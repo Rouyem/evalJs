@@ -1,0 +1,24 @@
+.green, footer {
+  background-color: #65ab2f;
+}
+.bleu {
+  background-color: rgb(57, 98, 126);
+}
+.erreur {
+  color: red;
+  font-weight: bold;
+}
+.active {
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  background-color: #65ab2f;
+}
+#enhaut{
+  position: relative;
+  top: 85vh;
+  right: 25px;
+  display: none;
+  position: fixed;
+ 
+}

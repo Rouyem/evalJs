@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/accueil.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <link href='fullcalendar/main.css' rel='stylesheet' />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.5.1/main.min.css,npm/fullcalendar@5.5.1/main.min.css">
+  <title>Agenda</title>
+</head>
+<body>
+  <header id="header">
+    <div class="row text-white green" style="height: 50px; line-height: 50px;">
+      <p class="col-3 text-center">
+        Votre grainetier en ligne !
+      </p>      
+      <nav class="col-8">
+        <ul class="nav justify-content-end">
+          <li class="nav-item"><a class="nav-link text-white" href="#">Mon compte</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="../accueil.html">Accueil</a></li>
+        </ul>
+      </nav>     
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-2" id="logo">
+          <img src="../images/logo.jpg" alt="logo" width="170" height="150" class="img-fluid">
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="row">
+    <img src="../images/photoslide.jpg" alt="plante" style="height: 337px;">
+  </div>
+  <div class="container" >
+    <div id="calendar"></div>
+  </div>
+  <footer class="text-white text-center"  style="height: 50px; line-height: 50px;">
+    Le jardin d'Eugene &copy; 2021
+  </footer>
+</body>
+
+<script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.5.1,npm/fullcalendar@5.5.1/main.min.js,npm/fullcalendar@5.5.1/locales-all.min.js,npm/fullcalendar@5.5.1/locales-all.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    navLinks: true, // can click day/week names to navigate views
+    selectable: true,
+    selectMirror: true,
+    select: function(arg) {
+        // prompt = demander de saisir un titre
+      var title = prompt('Event Title:');
+      if (title) {
+          //calendar.addevent = permet d'ajouter un évènement
+        calendar.addEvent({
+          title: title,
+          start: arg.start,
+          end: arg.end,
+          allDay: arg.allDay
+        })
+      }
+      calendar.unselect()
+    },
+    eventClick: function(arg) {
+      if (confirm('Are you sure you want to delete this event?')) {
+        arg.event.remove()
+      }
+    },
+    editable: true,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    locale: 'fr'
+  });
+  calendar.render();
+});
+
+</script>
+</html>
